@@ -16,6 +16,7 @@
         <module>gateway-service</module>
         <module>auth-service</module>
         <module>system-service</module>
+        <module>doctor-service</module>
     </modules>
 
     <properties>
