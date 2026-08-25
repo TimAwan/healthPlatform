@@ -1,0 +1,38 @@
+server:
+  port: 9104
+
+spring:
+  application:
+    name: file-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  config:
+    import: optional:nacos:${spring.application.name}.yml
+  servlet:
+    multipart:
+      max-file-size: 12MB
+      max-request-size: 15MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+health:
+  file:
+    # local: 本地磁盘（开发默认）；oss: 阿里云 OSS（生产）
+    storage: ${FILE_STORAGE:local}
+    local:
+      dir: ${FILE_LOCAL_DIR:./data/files}
+    max-size-bytes: ${FILE_MAX_SIZE:10485760}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

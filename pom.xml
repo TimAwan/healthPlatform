@@ -17,6 +17,7 @@
         <module>auth-service</module>
         <module>system-service</module>
         <module>doctor-service</module>
+        <module>file-service</module>
     </modules>
 
     <properties>

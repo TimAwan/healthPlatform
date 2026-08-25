@@ -26,6 +26,10 @@ spring:
           uri: lb://doctor-service
           predicates:
             - Path=/api/v1/doctors/**,/api/v1/hospitals/**,/api/v1/departments/**
+        - id: file-route
+          uri: lb://file-service
+          predicates:
+            - Path=/api/v1/files/**
 
 gateway:
   security:
