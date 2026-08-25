@@ -22,6 +22,8 @@ Java 17 / Spring Boot 3.2.x / Spring Cloud 2023.0.x / Spring Cloud Alibaba 2023.
 
 ## 快速启动（开发环境）
 
+> 完整的从零部署步骤（含 JAVA_HOME 修复、Docker Desktop 安装、常见问题）见 **`docs/部署指南.md`**。
+
 前置要求：JDK 17、Maven 3.8+、Docker Desktop。
 
 ```bash

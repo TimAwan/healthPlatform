@@ -20,3 +20,10 @@ spring:
       password: ${NACOS_PASSWORD:nacos}
       discovery:
         service: ${spring.application.name}
+
+health:
+  file:
+    storage: local
+    local:
+      dir: ./data/files
+    max-size-bytes: 10485760

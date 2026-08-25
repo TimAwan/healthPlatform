@@ -18,3 +18,8 @@ spring:
       server-addr: ${NACOS_ADDR}
       username: ${NACOS_USERNAME}
       password: ${NACOS_PASSWORD}
+
+health:
+  file:
+    storage: oss
+    max-size-bytes: 10485760
