@@ -12,12 +12,33 @@
 
     <artifactId>common-log</artifactId>
     <name>common-log</name>
-    <description>操作日志注解与 AOP 切面（M3 实现）</description>
+    <description>操作日志注解与 AOP 切面，经 Feign 同步写 system-service</description>
 
     <dependencies>
         <dependency>
             <groupId>com.health.platform</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>common-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

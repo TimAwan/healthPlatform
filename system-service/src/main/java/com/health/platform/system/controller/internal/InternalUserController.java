@@ -3,6 +3,7 @@ package com.health.platform.system.controller.internal;
 import com.health.platform.core.result.Result;
 import com.health.platform.security.internal.UserCredentialsDTO;
 import com.health.platform.system.entity.SysUser;
+import com.health.platform.system.service.RbacService;
 import com.health.platform.system.service.SysUserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +21,11 @@ import java.util.Set;
 public class InternalUserController {
 
     private final SysUserService sysUserService;
+    private final RbacService rbacService;
 
-    public InternalUserController(SysUserService sysUserService) {
+    public InternalUserController(SysUserService sysUserService, RbacService rbacService) {
         this.sysUserService = sysUserService;
+        this.rbacService = rbacService;
     }
 
     @GetMapping("/{username}/credentials")
@@ -52,8 +55,7 @@ public class InternalUserController {
 
     @GetMapping("/{id}/permissions")
     public Result<Set<String>> getPermissions(@PathVariable("id") Long id) {
-        // TODO: M3 接入 RBAC 后按 角色-权限 关联返回真实权限码集合
-        return Result.ok(Set.of());
+        return Result.ok(rbacService.getUserPermissionCodes(id));
     }
 
     @PostMapping("/{id}/login-success")

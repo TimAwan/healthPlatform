@@ -38,6 +38,7 @@ public class AdminUserInitializer implements ApplicationRunner {
             return;
         }
         SysUser admin = new SysUser();
+        admin.setId(1L);
         admin.setUsername(adminUsername);
         admin.setPassword(passwordEncoder.encode(adminInitialPassword));
         admin.setRealName("系统管理员");

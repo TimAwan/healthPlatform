@@ -8,6 +8,7 @@ import com.health.platform.auth.service.AuthService;
 import com.health.platform.auth.service.CaptchaService;
 import com.health.platform.core.constant.SecurityConstants;
 import com.health.platform.core.result.Result;
+import com.health.platform.log.OperationLog;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @OperationLog(operation = "登录", targetType = "AUTH")
     public Result<TokenVO> login(@Valid @RequestBody LoginRequest request) {
         return Result.ok(authService.login(request));
     }
@@ -39,6 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
+    @OperationLog(operation = "退出登录", targetType = "AUTH")
     public Result<Void> logout(
             @RequestHeader(value = SecurityConstants.AUTHORIZATION_HEADER, required = false) String authorization) {
         authService.logout(authorization);
