@@ -1,0 +1,5 @@
+-- 微服务数据库隔离：单实例多 schema，服务间禁止跨库访问（说明书第 20 章）
+CREATE DATABASE IF NOT EXISTS auth_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS system_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS doctor_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS file_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
