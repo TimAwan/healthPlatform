@@ -6,7 +6,9 @@ import com.health.platform.core.result.Result;
 import com.health.platform.security.permission.RequirePermission;
 import com.health.platform.system.dto.IdsRequest;
 import com.health.platform.system.dto.SysRoleDTO;
+import com.health.platform.system.entity.SysPermission;
 import com.health.platform.system.entity.SysRole;
+import com.health.platform.system.mapper.SysPermissionMapper;
 import com.health.platform.system.service.SysRoleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,13 @@ import java.util.List;
 public class RoleController {
 
     private final SysRoleService sysRoleService;
+    private final SysPermissionMapper sysPermissionMapper;
+
+    @GetMapping("/permissions")
+    @RequirePermission("ROLE_VIEW")
+    public Result<List<SysPermission>> listAllPermissions() {
+        return Result.ok(sysPermissionMapper.selectList(null));
+    }
 
     @GetMapping
     @RequirePermission("ROLE_VIEW")
