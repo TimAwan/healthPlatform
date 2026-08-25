@@ -39,7 +39,25 @@ mvn clean install
 #   各服务在各自模块目录下执行: mvn spring-boot:run
 ```
 
-默认端口规划：gateway 9000、auth 9101、system 9102、doctor 9103、file 9104、Nacos 控制台 8848。
+默认端口规划：gateway 9000、auth 9101、system 9102、doctor 9103、file 9104、Nacos 控制台 8848（nacos/nacos）。
+
+## 初始管理员
+
+system-service 首次启动且 `sys_user` 为空时自动创建系统管理员（ID 固定为 1，并绑定 SYS_ADMIN 角色）：
+
+- 用户名：环境变量 `ADMIN_USERNAME`（默认 `admin`）
+- 初始密码：环境变量 `ADMIN_INITIAL_PASSWORD`（默认 `Admin@123456`），登录后请由系统管理员重置
+
+种子角色与权限：SYS_ADMIN（全部权限/菜单）、OPS_ADMIN（医生管理全部权限 + 医生管理菜单）。
+
+## 环境注意
+
+- 本机 JAVA_HOME 需指向 JDK 17 实际安装目录（如 `D:\Application\JDK`），若指向无效路径 Maven 会报 "JAVA_HOME is not defined correctly"
+- 前端仓库：`../health-platform-web`（Vue 3 + Element Plus，dev 端口 5173，代理 `/api` 到 9000）
+
+## 验收
+
+第一阶段 22 项 DoD 清单与运行时验证步骤见 `docs/DoD-第一阶段.md`。
 
 ## 环境配置
 
