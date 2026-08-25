@@ -13,6 +13,9 @@
 
     <modules>
         <module>common</module>
+        <module>gateway-service</module>
+        <module>auth-service</module>
+        <module>system-service</module>
     </modules>
 
     <properties>
