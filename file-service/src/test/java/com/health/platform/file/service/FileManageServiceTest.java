@@ -70,7 +70,7 @@ class FileManageServiceTest {
 
         FileRecord record = fileManageService.upload(multipart, "DOCTOR_ATTACHMENT", 9L);
 
-        assertEquals(32, record.getFileId().length());
+        assertTrue(record.getFileId() > 0);
         assertEquals("report.png", record.getOriginalName());
         assertEquals("LOCAL", record.getStorageType());
         assertEquals((long) content.length, record.getSize());

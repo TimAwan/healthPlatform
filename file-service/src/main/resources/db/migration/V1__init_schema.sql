@@ -1,7 +1,7 @@
 -- file_db V1：文件元数据（说明书第 24 章：业务表存 file_id，不存 URL）
 CREATE TABLE file_record (
     id            BIGINT       NOT NULL,
-    file_id       VARCHAR(64)  NOT NULL COMMENT '对外文件标识',
+    file_id       BIGINT       NOT NULL COMMENT '对外文件标识',
     original_name VARCHAR(255) NOT NULL,
     storage_type  VARCHAR(20)  NOT NULL COMMENT 'LOCAL/OSS',
     storage_path  VARCHAR(500) NOT NULL COMMENT '本地路径或 OSS object key',

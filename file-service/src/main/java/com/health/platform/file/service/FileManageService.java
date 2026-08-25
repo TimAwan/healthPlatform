@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Set;
-import java.util.UUID;
 
 // TODO: 文件访问权限细化（说明书第 24/40 章）：一期文件仅医生资质附件且仅管理端使用，
 // 上传/下载仅要求登录；二期客户报告上传上线前必须按业务类型与角色细化访问控制
@@ -45,10 +44,10 @@ public class FileManageService {
             throw new BizException("不支持的文件类型: " + extension);
         }
 
-        String fileId = UUID.randomUUID().toString().replace("-", "");
+        Long fileId = com.baomidou.mybatisplus.core.toolkit.IdWorker.getId();
         String storagePath;
         try {
-            storagePath = fileStorageService.store(fileId, file.getInputStream(),
+            storagePath = fileStorageService.store(String.valueOf(fileId), file.getInputStream(),
                     file.getSize(), file.getContentType());
         } catch (IOException e) {
             log.error("读取上传文件失败: {}", e.getMessage());
@@ -69,7 +68,7 @@ public class FileManageService {
         return record;
     }
 
-    public FileRecord download(String fileId) {
+    public FileRecord download(Long fileId) {
         return requireFile(fileId);
     }
 
@@ -77,13 +76,13 @@ public class FileManageService {
         return fileStorageService.read(record.getStoragePath());
     }
 
-    public void delete(String fileId) {
+    public void delete(Long fileId) {
         FileRecord record = requireFile(fileId);
         fileStorageService.delete(record.getStoragePath());
         fileRecordMapper.deleteById(record.getId());
     }
 
-    private FileRecord requireFile(String fileId) {
+    private FileRecord requireFile(Long fileId) {
         FileRecord record = fileRecordMapper.selectOne(new LambdaQueryWrapper<FileRecord>()
                 .eq(FileRecord::getFileId, fileId));
         if (record == null) {

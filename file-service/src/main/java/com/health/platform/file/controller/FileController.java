@@ -44,7 +44,7 @@ public class FileController {
     }
 
     @GetMapping("/{fileId}")
-    public Result<FileVO> info(@PathVariable String fileId) {
+    public Result<FileVO> info(@PathVariable Long fileId) {
         FileRecord record = fileManageService.download(fileId);
         FileVO vo = new FileVO();
         vo.setFileId(record.getFileId());
@@ -56,7 +56,7 @@ public class FileController {
     }
 
     @GetMapping("/{fileId}/download")
-    public ResponseEntity<InputStreamResource> download(@PathVariable String fileId) {
+    public ResponseEntity<InputStreamResource> download(@PathVariable Long fileId) {
         FileRecord record = fileManageService.download(fileId);
         String encodedName = URLEncoder.encode(record.getOriginalName(), StandardCharsets.UTF_8)
                 .replace("+", "%20");
@@ -75,7 +75,7 @@ public class FileController {
     }
 
     @DeleteMapping("/{fileId}")
-    public Result<Void> delete(@PathVariable String fileId) {
+    public Result<Void> delete(@PathVariable Long fileId) {
         fileManageService.delete(fileId);
         return Result.ok();
     }
