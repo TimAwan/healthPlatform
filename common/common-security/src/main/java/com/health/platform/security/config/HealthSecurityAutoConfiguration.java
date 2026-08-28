@@ -62,7 +62,7 @@ public class HealthSecurityAutoConfiguration {
     public PermissionProvider permissionProvider(
             org.springframework.data.redis.core.StringRedisTemplate redisTemplate,
             ObjectProvider<SystemInternalClient> systemInternalClient) {
-        return new RedisPermissionProvider(redisTemplate, systemInternalClient.getIfAvailable());
+        return new RedisPermissionProvider(redisTemplate, systemInternalClient);
     }
 
     @Bean
